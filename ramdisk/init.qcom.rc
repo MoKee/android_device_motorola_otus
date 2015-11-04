@@ -477,19 +477,6 @@ service batt_health /system/bin/batt_health
     group mot_pwric
     disabled
 
-on property:bluetooth.hciattach=false
-    setprop bluetooth.status off
-
-on property:bluetooth.hciattach=true
-    start hciattach
-
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 service hw_revs /system/bin/hardware_revisions.sh
     class main
     user system
@@ -617,12 +604,6 @@ service wcnss-service /system/bin/wcnss_service
     user root
     group system wifi
     oneshot
-
-service wifi-crda /system/bin/sh /system/etc/init.crda.sh
-   class late_start
-   user root
-   disabled
-   oneshot
 
 # WPA
 service p2p_supplicant /system/bin/wpa_supplicant \
